@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  officeleagueapi:
+    image: ${DOCKER_REGISTRY-}officeleagueapi
+    build:
+      context: .
+      dockerfile: OfficeLeagueAPI/Dockerfile
