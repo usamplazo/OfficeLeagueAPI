@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OfficeLeagueAPI.Models;
+using OfficeLeagueAPI.UnitOfWork;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<PremierLeagueDbContext>(o =>
 {
     o.UseSqlServer(connectionString);
 });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
@@ -37,3 +40,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program { }
